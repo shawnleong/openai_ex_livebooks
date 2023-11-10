@@ -1,0 +1,38 @@
+# OpenAI.audio_speech/2
+
+```elixir
+Mix.install([
+  {:openai, path: "/path/to/mix/directory"},
+  {:kino, "~> 0.11.2"}
+])
+```
+
+## Request
+
+```elixir
+openai_config = %OpenAI.Config{
+  api_key: System.get_env("OPENAI_API_KEY"),
+  organization_key: System.get_env("OPENAI_ORGANIZATION_KEY"),
+  http_options: [recv_timeout: :infinity]
+}
+
+true
+```
+
+```elixir
+{:ok, binary} =
+  OpenAI.audio_speech(
+    [
+      input: "You know that Voight-Kampf test of yours. Did you ever take that test yourself?",
+      model: "tts-1",
+      voice: "alloy"
+    ],
+    openai_config
+  )
+```
+
+```elixir
+Kino.Audio.new(binary, :mp3)
+```
+
+<!-- livebook:{"offset":613,"stamp":{"token":"XCP.lB0oaqPR28LKU4-So3ruHsPs4EJSC8stykN3PuBHGCEPjpPYD8unjXLQCrU_eBYgeL1HalW5Bm-rNdoyqhZhzZFj4yGre5BACr5MY73dpqWnu4v0GRljATMGrsaZb2I6BSYmw4FuPIe3Ky0uCXIvKZvkd8Gw","version":2}} -->
